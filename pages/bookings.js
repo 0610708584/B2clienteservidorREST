@@ -118,7 +118,7 @@ const Bookings = ({bookings}) => {
 			<div className="flex flex-col pt-10 items-center">
 
 			{(session) ? null : ([
-				<Dropdown key={bookings} label="Filtro">
+				<Dropdown key={null} label="Filtro">
 					<Dropdown.Item onClick={filterNone}>
 						Ninguno
 					</Dropdown.Item>
@@ -133,7 +133,7 @@ const Bookings = ({bookings}) => {
 					</Dropdown.Item>
 				</Dropdown>,
 
-				<form key={bookings} onSubmit={handleSubmit}>
+				<form key={null} onSubmit={handleSubmit}>
 					<TextInput id="user" 
 						name="user" 
 						value={userValue}
