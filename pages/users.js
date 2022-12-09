@@ -11,8 +11,10 @@ import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
 import Link from 'next/link'
 import NavbarItem from '../components/navbar'
 
-const Users = ({users}) => {
+const Users = ({users, loggedUser}) => {
+	const { data: session } = useSession()
 	const router = useRouter()
+
 	const [usernameValue, setUsername] = useState(users.username)
 	const [age1Value, setAge1] = useState(users.age1)
 	const [age2Value, setAge2] = useState(users.age2)
@@ -27,6 +29,27 @@ const Users = ({users}) => {
 			router.push(`/users`)
 		}
 	}
+
+	async function newLoggedUser() {
+		if((loggedUser != null) && !loggedUser.length) {
+			await fetch(`http://${process.env.URL}/api/users`, {
+					body: JSON.stringify({
+						name: (session.user).name,
+						surname: "",
+						email: (session.user).email,
+						username: (session.user).email,
+						age: 0,
+						public_id: ""
+					}),
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					method: 'POST'
+				})	
+				router.push(`/users`)
+		}
+	}
+	
 
 	function filterNone() {
 		setUsername("")
@@ -136,6 +159,10 @@ const Users = ({users}) => {
 								const myImage = cld.image(user.public_id)
 								myImage.resize(thumbnail().width(70).height(70).gravity(focusOn(FocusOn.face()))).roundCorners(byRadius(10));
 
+								if(session) {
+									newLoggedUser()
+								}
+
 								return (
 									<li className="py-3 sm:py-4">
 										<div className="flex items-center space-x-4">
@@ -166,25 +193,10 @@ const Users = ({users}) => {
 
 export async function getServerSideProps(ctx) {
 	const session = await getSession(ctx)
-	if(session) {
-		const loggedUser = await fetch(`http://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
+	let loggedUser = null
 
-		if(!loggedUser.length) {
-			await fetch(`http://${process.env.URL}/api/users`, {
-					body: JSON.stringify({
-						name: (session.user).name,
-						surname: "",
-						email: (session.user).email,
-						username: (session.user).email,
-						age: 0,
-						public_id: ""
-					}),
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					method: 'POST'
-				})	
-		}
+	if(session) {
+		loggedUser = await fetch(`http://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
 	}
 
 	if(((ctx.query).age1 !== undefined) && ((ctx.query).age2 !== undefined)) {
@@ -196,7 +208,8 @@ export async function getServerSideProps(ctx) {
 
 		return {
 			props:{
-				users
+				users,
+				loggedUser
 			}
 		}
 	}
@@ -209,7 +222,8 @@ export async function getServerSideProps(ctx) {
 
 		return {
 			props:{
-				users
+				users,
+				loggedUser
 			}
 		}
 	}
@@ -219,7 +233,8 @@ export async function getServerSideProps(ctx) {
 	
 		return {
 			props:{
-				users
+				users,
+				loggedUser
 			}
 		}
 }
