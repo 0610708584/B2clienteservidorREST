@@ -137,7 +137,7 @@ const Users = ({users}) => {
 								myImage.resize(thumbnail().width(70).height(70).gravity(focusOn(FocusOn.face()))).roundCorners(byRadius(10));
 
 								return (
-									<li className="py-3 sm:py-4">
+									<li className="py-3 sm:py-4" key={user._id}>
 										<div className="flex items-center space-x-4">
 											<AdvancedImage cldImg={myImage} />
 											<div className="min-w-0 flex-1">

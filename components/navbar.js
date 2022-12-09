@@ -16,7 +16,7 @@ const NavbarItem = () => {
 				<Link href='/users'>Usuarios</Link> 
 				<Link href='/housings'>Alojamientos</Link> 
 				<Link href='/bookings'>Reservas</Link> 
-				<a href='/madrid' className="underline">Madrid</a>
+				<Link href='/madrid'><a className="underline">Madrid</a></Link>
 			</Navbar.Collapse>
 			{(session) ? (
 				<div className="flex-row flex">

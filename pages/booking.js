@@ -6,8 +6,6 @@ import { useEffect, useState } from "react"
 import NavbarItem from "../components/navbar"
 import MapItem from "../components/map"
 
-
-
 const BookingProfile = ({
 	booking
 }) => {
@@ -15,7 +13,6 @@ const BookingProfile = ({
 
 	const router = useRouter()
 	const [propertiesList, setProperties] = useState([])
-
 
 	useEffect(() => {
 		const getHousings = async() => {
@@ -28,7 +25,6 @@ const BookingProfile = ({
 
 		getHousings()
 	},[])
-
 
 	const deleteBooking = async() => {
 		await fetch(
@@ -71,21 +67,14 @@ const BookingProfile = ({
 
 	return (
 		<div className="flex flex-col">
-			
-				<NavbarItem />
-			
-			
+			<NavbarItem />
 			<div className="flex flex-col w-full h-full items-center justify-center space-y-4 py-10">
-
 				<div className="flex flex-col w-full items-center space-y-2">
-					
-
 					<div className="flex flex-col pb-4 items-left">
-							<p className="text-base text-center text-gray-400">{booking._id}</p>
-							<p className="text-3xl font-medium text-gray-700">Reserva de <span className="text-3xl font-light text-gray-700">{user.name} {user.surname}</span> en <span className="text-3xl font-light text-gray-700">{housing.address}</span></p>
-							<p className="text-normal font-medium">Desde <span className="text-normal font-light text-gray-700">{(booking.startDate).split('T')[0]}</span> hasta <span className="text-normal font-light text-gray-700">{(booking.endDate).split('T')[0]}</span></p>
+						<p className="text-base text-center text-gray-400">{booking._id}</p>
+						<p className="text-3xl font-medium text-gray-700">Reserva de <span className="text-3xl font-light text-gray-700">{user.name} {user.surname}</span> en <span className="text-3xl font-light text-gray-700">{housing.address}</span></p>
+						<p className="text-normal font-medium">Desde <span className="text-normal font-light text-gray-700">{(booking.startDate).split('T')[0]}</span> hasta <span className="text-normal font-light text-gray-700">{(booking.endDate).split('T')[0]}</span></p>
 					</div>
-
 					<div className="flex flex-row justify-between space-x-2">
 						{(session) ? null : ([
 							<Button>
@@ -108,7 +97,6 @@ const BookingProfile = ({
 }
 
 export async function getServerSideProps(ctx){
-
 	const {id} = ctx.query
 
 	const booking = await fetch(`http://${process.env.URL}/api/bookings/${id}`)
