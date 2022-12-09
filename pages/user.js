@@ -96,10 +96,10 @@ const UserProfile = ({user}) => {
 								</Button>
 							) : (null)
 						) : ([
-							<Button>
+							<Button key={user._id}>
 								<Link href={`edit-user/?id=${user._id}`} passHref>Editar perfil</Link>
 							</Button>,
-							<Button onClick={deleteUser} className="bg-orange-500 hover:bg-orange-700">Borrar perfil</Button>
+							<Button key={user._id} onClick={deleteUser} className="bg-orange-500 hover:bg-orange-700">Borrar perfil</Button>
 						])}
 					</div>
 				</div>

@@ -77,10 +77,10 @@ const BookingProfile = ({
 					</div>
 					<div className="flex flex-row justify-between space-x-2">
 						{(session) ? null : ([
-							<Button>
+							<Button key={booking._id}>
 								<Link href={`edit-booking/?id=${booking._id}`} passHref>Editar reserva</Link>
 							</Button>,
-							<Button onClick={deleteBooking} className="bg-orange-500 hover:bg-orange-700">Borrar reserva</Button>
+							<Button key={booking._id} onClick={deleteBooking} className="bg-orange-500 hover:bg-orange-700">Borrar reserva</Button>
 						])}
 					</div>
 				</div>
