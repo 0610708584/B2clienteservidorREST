@@ -118,7 +118,7 @@ const Bookings = ({bookings}) => {
 			<div className="flex flex-col pt-10 items-center">
 
 			{(session) ? null : ([
-				<Dropdown key={null} label="Filtro">
+				<Dropdown label="Filtro">
 					<Dropdown.Item onClick={filterNone}>
 						Ninguno
 					</Dropdown.Item>
@@ -133,7 +133,7 @@ const Bookings = ({bookings}) => {
 					</Dropdown.Item>
 				</Dropdown>,
 
-				<form key={null} onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit}>
 					<TextInput id="user" 
 						name="user" 
 						value={userValue}
@@ -192,7 +192,7 @@ const Bookings = ({bookings}) => {
 								if (session) {
 									if ((session.user).email == (booking.user).email) {
 										return (
-											<li className="py-3 sm:py-4" key={booking}>
+											<li className="py-3 sm:py-4">
 												<div className="flex items-center space-x-4">
 													
 													<div className="min-w-0 flex-1">
@@ -209,7 +209,7 @@ const Bookings = ({bookings}) => {
 									}
 								} else {
 									return (
-										<li className="py-3 sm:py-4" key={booking}>
+										<li className="py-3 sm:py-4">
 											<div className="flex items-center space-x-4">
 												
 												<div className="min-w-0 flex-1">

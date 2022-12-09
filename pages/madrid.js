@@ -61,7 +61,7 @@ const Madrid = ({weather, pollution}) => {
 						{weather && weather.length > 0 ? (
 							weather.map((weather) => {
 								return (
-									<li className="py-3 sm:py-4" key={weather}>
+									<li className="py-3 sm:py-4">
 										<div className="flex items-center space-x-4">											
 											<div className="min-w-0 flex-1">
 												<p className="truncate font-medium text-gray-900 underline dark:text-white">{weather.fecha} </p>
@@ -111,7 +111,7 @@ const Madrid = ({weather, pollution}) => {
 						{pollution && pollution.length > 0 ? (
 							pollution.map((pollution) => {
 								return (
-									<li className="py-3 sm:py-4" key={pollution}>
+									<li className="py-3 sm:py-4">
 										<div className="flex items-center space-x-4">											
 											<div className="min-w-0 flex-1">
 											<p className="truncate font-medium text-gray-900 underline dark:text-white">{((pollution.Fecha).split('T')[0]).substring(0, 4) + "-" + ((pollution.Fecha).split('T')[0]).substring(4, 6) + "-" + ((pollution.Fecha).split('T')[0]).substring(6, 9)} </p>
