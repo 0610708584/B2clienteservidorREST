@@ -18,7 +18,7 @@ const CreateHousing = ({loggedUser}) => {
 	const public_id = useRef()
 
 	const handleSubmit = async() => {
-		await fetch(`https://${process.env.URL}/api/housings`,{
+		await fetch(`http://${process.env.URL}/api/housings`,{
 			body: JSON.stringify({
 				title: title.current.value,
 				description: description.current.value,
@@ -44,7 +44,7 @@ const CreateHousing = ({loggedUser}) => {
 			<div className="flex-col flex w-full h-screen space-y-4 mt-10 items-center" >
 
 				<h1 className="text-2xl font-normal ">Crear alojamiento</h1>
-				<form onSubmit={handleSubmit} action={`https://${process.env.URL}/housings`}>
+				<form onSubmit={handleSubmit} action={`http://${process.env.URL}/housings`}>
 				{/** Esto es temporal, hasta que tengamos la sesion del usuario 
 					<input type="text" hidden={true} id="owner" name="owner" ref={owner} value={"636d57a75c1044b28b7fe9c8"}/>   */}
 					<div className="pb-2 w-96">
@@ -123,7 +123,7 @@ export async function getServerSideProps(ctx){
 	const session = await getSession(ctx)
 
 	if(session) {
-		const loggedUser = await fetch(`https://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
+		const loggedUser = await fetch(`http://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
 
 		if(!loggedUser.length) {
 			return {

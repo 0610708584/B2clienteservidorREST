@@ -23,7 +23,7 @@ const EditHousing = ({
 		event.preventDefault()
 
 		const res = await fetch(
-			`https://${process.env.URL}/api/housings/${housing._id}`,{
+			`http://${process.env.URL}/api/housings/${housing._id}`,{
 				body: JSON.stringify({
 					title: event.target.title.value,
 					description: event.target.description.value,
@@ -156,7 +156,7 @@ export async function getServerSideProps(ctx){
 
 	const {id} = ctx.query 
 
-	const housing = await fetch(`https://${process.env.URL}/api/housings/${id}`)
+	const housing = await fetch(`http://${process.env.URL}/api/housings/${id}`)
 		.then(response => response.json())
 
 

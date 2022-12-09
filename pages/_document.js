@@ -12,7 +12,7 @@ class MyDocument extends Document {
         <Head>
           <script
             defer
-            src="https://widget.cloudinary.com/v2.0/global/all.js"
+            src="http://widget.cloudinary.com/v2.0/global/all.js"
             type="text/javascript"
           ></script>
         </Head>

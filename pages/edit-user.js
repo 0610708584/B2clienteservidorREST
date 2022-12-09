@@ -17,7 +17,7 @@ const EditUser = ({user}) => {
 		event.preventDefault()
 
 		const res = await fetch(
-			`https://${process.env.URL}/api/users/${user._id}`,{
+			`http://${process.env.URL}/api/users/${user._id}`,{
 				body: JSON.stringify({
 					name: event.target.name.value,
 					surname: event.target.surname.value,
@@ -121,7 +121,7 @@ export async function getServerSideProps(ctx){
 
 	const {id} = ctx.query 
 
-	const user = await fetch(`https://${process.env.URL}/api/users/${id}`)
+	const user = await fetch(`http://${process.env.URL}/api/users/${id}`)
 		.then(response => response.json())
 
 

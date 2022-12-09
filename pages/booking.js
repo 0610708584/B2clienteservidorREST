@@ -17,7 +17,7 @@ const BookingProfile = ({
 	useEffect(() => {
 		const getHousings = async() => {
 
-			const housingList = await fetch(`https://${process.env.URL}/api/housings/owner/adminPaco`)
+			const housingList = await fetch(`http://${process.env.URL}/api/housings/owner/adminPaco`)
 				.then(response => response.json())
 
 			setProperties(housingList)
@@ -28,7 +28,7 @@ const BookingProfile = ({
 
 	const deleteBooking = async() => {
 		await fetch(
-			`https://${process.env.URL}/api/bookings/${booking._id}`,{
+			`http://${process.env.URL}/api/bookings/${booking._id}`,{
 				method: 'DELETE'
 			})
 			.then(router.push('/bookings'))
@@ -48,7 +48,7 @@ const BookingProfile = ({
 	const [user, setUser] = useState([])
 	useEffect(() => {
 		const getUser = async() => {
-			const user = await fetch(`https://${process.env.URL}/api/users/${booking.user}`)
+			const user = await fetch(`http://${process.env.URL}/api/users/${booking.user}`)
 				.then(response => response.json())
 				setUser(user)
 		}
@@ -58,7 +58,7 @@ const BookingProfile = ({
 	const [housing, setHousing] = useState([])
 	useEffect(() => {
 		const getHousing = async() => {
-			const housing = await fetch(`https://${process.env.URL}/api/housings/${booking.housing}`)
+			const housing = await fetch(`http://${process.env.URL}/api/housings/${booking.housing}`)
 				.then(response => response.json())
 				setHousing(housing)
 		}
@@ -99,7 +99,7 @@ const BookingProfile = ({
 export async function getServerSideProps(ctx){
 	const {id} = ctx.query
 
-	const booking = await fetch(`https://${process.env.URL}/api/bookings/${id}`)
+	const booking = await fetch(`http://${process.env.URL}/api/bookings/${id}`)
 		.then(response => response.json())
 
 	return{

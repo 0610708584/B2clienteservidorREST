@@ -209,7 +209,7 @@ export async function getServerSideProps(ctx){
 	if((ctx.query).owner !== undefined) {
 		const {owner} = ctx.query 
 
-		const housings = await fetch(`https://${process.env.URL}/api/housings/owner/${owner}`)
+		const housings = await fetch(`http://${process.env.URL}/api/housings/owner/${owner}`)
 		.then(response => response.json())
 
 		return {
@@ -223,7 +223,7 @@ export async function getServerSideProps(ctx){
 		const {price1} = ctx.query
 		const {price2} = ctx.query 
 
-		const housings = await fetch(`https://${process.env.URL}/api/housings/prices/${price1}/${price2}`)
+		const housings = await fetch(`http://${process.env.URL}/api/housings/prices/${price1}/${price2}`)
 		.then(response => response.json())
 
 		return {
@@ -236,7 +236,7 @@ export async function getServerSideProps(ctx){
 	if((ctx.query).address !== undefined) {
 		const {address} = ctx.query 
 
-		const housings = await fetch(`https://${process.env.URL}/api/housings/address/${address}`)
+		const housings = await fetch(`http://${process.env.URL}/api/housings/address/${address}`)
 		.then(response => response.json())
 
 		return {
@@ -246,7 +246,7 @@ export async function getServerSideProps(ctx){
 		}
 	}
 
-	const housings = await fetch(`https://${process.env.URL}/api/housings`)
+	const housings = await fetch(`http://${process.env.URL}/api/housings`)
 		.then(response => response.json())
 
 		return {

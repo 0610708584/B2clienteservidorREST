@@ -16,7 +16,7 @@ const HousingItem = ({
 
 	const deleteHousing = async() => {
 		await fetch(
-			`https://${process.env.URL}/api/housings/${housing._id}`,{
+			`http://${process.env.URL}/api/housings/${housing._id}`,{
 				method: 'DELETE'
 			})
 			.then(router.push('/housings'))

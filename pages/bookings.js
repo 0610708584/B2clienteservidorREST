@@ -240,31 +240,31 @@ const Bookings = ({bookings}) => {
 }
 
 export async function getServerSideProps(ctx){
-	let bookings = await fetch(`https://${process.env.URL}/api/bookings`).then(response => response.json())
+	let bookings = await fetch(`http://${process.env.URL}/api/bookings`).then(response => response.json())
 
 	if((ctx.query).user !== undefined) {
 		const {user} = ctx.query 
-		bookings = await fetch(`https://${process.env.URL}/api/bookings/user/${user}`).then(response => response.json())
+		bookings = await fetch(`http://${process.env.URL}/api/bookings/user/${user}`).then(response => response.json())
 	}
 
 	if(((ctx.query).endDate1 !== undefined) && ((ctx.query).endDate2 !== undefined)) {
 		const {endDate1} = ctx.query
 		const {endDate2} = ctx.query 
-		bookings = await fetch(`https://${process.env.URL}/api/bookings/endDates/${endDate1}/${endDate2}`).then(response => response.json())
+		bookings = await fetch(`http://${process.env.URL}/api/bookings/endDates/${endDate1}/${endDate2}`).then(response => response.json())
 	}
 
 	if(((ctx.query).startDate1 !== undefined) && ((ctx.query).startDate2 !== undefined)) {
 		const {startDate1} = ctx.query
 		const {startDate2} = ctx.query 
-		bookings = await fetch(`https://${process.env.URL}/api/bookings/startDates/${startDate1}/${startDate2}`).then(response => response.json())
+		bookings = await fetch(`http://${process.env.URL}/api/bookings/startDates/${startDate1}/${startDate2}`).then(response => response.json())
 	}
 
 	if(bookings.length) {
 		for(const booking of bookings) {
-			const user = await fetch(`https://${process.env.URL}/api/users/${booking.user}`).then(response => response.json())
+			const user = await fetch(`http://${process.env.URL}/api/users/${booking.user}`).then(response => response.json())
 			booking.user = user
 	
-			const housing = await fetch(`https://${process.env.URL}/api/housings/${booking.housing}`).then(response => response.json())
+			const housing = await fetch(`http://${process.env.URL}/api/housings/${booking.housing}`).then(response => response.json())
 			booking.housing = housing
 		}
 	}

@@ -20,7 +20,7 @@ const UserProfile = ({user}) => {
 	useEffect(() => {
 		const getHousings = async() => {
 
-			const housingList = await fetch(`https://${process.env.URL}/api/housings/owner/${user.username}`)
+			const housingList = await fetch(`http://${process.env.URL}/api/housings/owner/${user.username}`)
 				.then(response => response.json())
 
 			setProperties(housingList)
@@ -31,7 +31,7 @@ const UserProfile = ({user}) => {
 
 	const deleteUser = async() => {
 		await fetch(
-			`https://${process.env.URL}/api/users/${user._id}`,{
+			`http://${process.env.URL}/api/users/${user._id}`,{
 				method: 'DELETE'
 			})
 			.then(router.push('/users'))
@@ -128,7 +128,7 @@ const UserProfile = ({user}) => {
 export async function getServerSideProps(ctx){
 	const {id} = ctx.query
 
-	const user = await fetch(`https://${process.env.URL}/api/users/${id}`)
+	const user = await fetch(`http://${process.env.URL}/api/users/${id}`)
 		.then(response => response.json())
 
 	return{

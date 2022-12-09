@@ -22,7 +22,7 @@ const EditBooking = ({
 		event.preventDefault()
 
 		const res = await fetch(
-			`https://${process.env.URL}/api/bookings/${booking._id}`,{
+			`http://${process.env.URL}/api/bookings/${booking._id}`,{
 				body: JSON.stringify({
 					startDate: event.target.startDate.value,
 					endDate: event.target.endDate.value,
@@ -126,7 +126,7 @@ export async function getServerSideProps(ctx){
 
 	const {id} = ctx.query 
 
-	const booking = await fetch(`https://${process.env.URL}/api/bookings/${id}`)
+	const booking = await fetch(`http://${process.env.URL}/api/bookings/${id}`)
 		.then(response => response.json())
 
 
