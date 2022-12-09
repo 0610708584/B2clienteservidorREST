@@ -58,38 +58,38 @@ const CreateBooking = ({loggedUser}) => {
 							<TextInput required={true} type="date" id="endDate" name="_endDate" placeholder="Fecha de fin" ref={endDate}/>
 						</div>
 						{session ? ([
-							<div className="pb-2">
+							<div className="pb-2" key={loggedUser}>
 								<div>
 									<label className="text-gray-800"htmlFor="user"> Identificador de usuario </label>
 								</div>
 								<TextInput required={true} id="user" name="_user" placeholder="Identificador de usuario" value={user[0]} disabled={true}/>
 							</div>,
-							<div className="pb-4">
+							<div className="pb-4" key={loggedUser}>
 								<div>
 									<label className="text-gray-800"htmlFor="housing"> Identificador de alojamiento </label>
 								</div>
 								<TextInput required={true} id="housing" name="_housing" placeholder="Identificador de alojamiento" ref={housing}/>
 							</div>
 						]) : ([
-							<div className="pb-2">
+							<div className="pb-2" key={loggedUser}>
 								<div>
 									<label className="text-gray-800"htmlFor="user"> Identificador de usuario </label>
 								</div>
 								<TextInput required={true} id="user" name="_user" placeholder="Identificador de usuario" ref={user}/>
 							</div>,
-							<div className="pb-2">
+							<div className="pb-2" key={loggedUser}>
 								<div>
 									<label className="text-gray-800"htmlFor="housing"> Identificador de alojamiento </label>
 								</div>
 								<TextInput required={true} id="housing" name="_housing" placeholder="Identificador de alojamiento" ref={housing}/>
 							</div>,
-							<div className="pb-2">
+							<div className="pb-2" key={loggedUser}>
 								<div>
 									<label className="text-gray-800"htmlFor="lat"> Latitud para recogida</label>
 								</div>
 								<TextInput required={true} id="lat" name="_lat" placeholder="Latitud para recogida" ref={lat}/>
 							</div>,
-							<div className="pb-4">
+							<div className="pb-4" key={loggedUser}>
 								<div>
 									<label className="text-gray-800"htmlFor="lng"> Longitud para recogida</label>
 								</div>

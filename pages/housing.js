@@ -145,18 +145,18 @@ const House = ({
 								<div className="flex flex-row space-x-2 mt-4">
 									{(session) ? (
 										(((session.user).email) === (owner.email)) ? ([
-											<Button>
+											<Button key={house}>
 												<Link href={`edit-housing/?id=${house._id}`} passHref>Editar alojamiento</Link>
 											</Button>,
-											<Button onClick={deleteHousing} className="bg-orange-500 hover:bg-orange-700">
+											<Button key={house} onClick={deleteHousing} className="bg-orange-500 hover:bg-orange-700">
 												Borrar alojamiento
 											</Button>
 										]) : (null)
 									) : ([
-										<Button>
+										<Button key={house}>
 											<Link href={`edit-housing/?id=${house._id}`} passHref>Editar alojamiento</Link>
 										</Button>,
-										<Button onClick={deleteHousing} className="bg-orange-500 hover:bg-orange-700">
+										<Button key={house} onClick={deleteHousing} className="bg-orange-500 hover:bg-orange-700">
 											Borrar alojamiento
 										</Button>
 									])}
@@ -196,7 +196,7 @@ const House = ({
 											})	
 									}
 									return (
-										<li className="py-3 sm:py-4">
+										<li className="py-3 sm:py-4" key={review}>
 											<div className="flex items-center space-x-4">
 												<div className="min-w-0 flex-1">
 													<div className="flex flex-row">
@@ -229,7 +229,7 @@ const House = ({
 																		const responder = cld.image((comment.user).public_id)
 																		responder.resize(thumbnail().width(50).height(50).gravity(focusOn(FocusOn.face()))).roundCorners(byRadius(100))		
 																		return (
-																			<li className="py-3 sm:pb-2">
+																			<li className="py-3 sm:pb-2" key={comment}>
 																				<div className="flex items-center space-x-4">
 																					<div className="min-w-0 flex-1">
 																						<div className="flex flex-row">
