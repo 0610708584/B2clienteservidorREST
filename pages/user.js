@@ -48,7 +48,7 @@ const UserProfile = ({user}) => {
 		return(
 			<Link href={`/housing?id=${house._id}`} passHref>
 				<div className='flex-none cursor-pointer'>
-					<div className='flex flex-col w-auto h-103 space-y-4' key={house._id}>
+					<div className='flex flex-col w-auto h-103 space-y-4' key={house}>
 						<AdvancedImage cldImg={myImage} />
 						<div className='flex flex-col items-start space-y-4'>
 							<div className='flex flex-col items-start space-y-0'>
@@ -96,10 +96,10 @@ const UserProfile = ({user}) => {
 								</Button>
 							) : (null)
 						) : ([
-							<Button key={user._id}>
+							<Button key={user}>
 								<Link href={`edit-user/?id=${user._id}`} passHref>Editar perfil</Link>
 							</Button>,
-							<Button key={user._id} onClick={deleteUser} className="bg-orange-500 hover:bg-orange-700">Borrar perfil</Button>
+							<Button key={user} onClick={deleteUser} className="bg-orange-500 hover:bg-orange-700">Borrar perfil</Button>
 						])}
 					</div>
 				</div>
