@@ -46,7 +46,7 @@ const House = ({
 			`http://${process.env.URL}/api/reviews/${review}`,{
 				method: 'DELETE'
 			})
-			.then(router.push(`/housings`))
+			.then(router.push(`/housing?id=${house._id}`))
 	}
 
 	const containerStyle = {
@@ -176,18 +176,14 @@ const House = ({
 								reviews.map((review) => {
 									const reviewer = cld.image((review.user).public_id)
 									reviewer.resize(thumbnail().width(50).height(50).gravity(focusOn(FocusOn.face()))).roundCorners(byRadius(100))		
-									
-									const userComment = useRef()
-									const descriptionComment = useRef()
-									const reviewComment = useRef()
-								
+																	
 									const submitComment = async() => {
 										await fetch(
 											`http://${process.env.URL}/api/comments`,{
 												body: JSON.stringify({
-													user: userComment.current.value,
-													description: descriptionComment.current.value,
-													review: reviewComment.current.value
+													user: document.getElementById("userComment").value,
+													description: document.getElementById("descriptionComment").value,
+													review: document.getElementById("reviewComment").value
 												}),
 												headers: {
 													'Content-Type': 'application/json'
@@ -268,17 +264,17 @@ const House = ({
 																<form onSubmit={submitComment} action={`http://${process.env.URL}/housing`}>
 																	<input type="text" hidden={true} id="id" name="id" value={house._id}/>
 																	{session ? (
-																		<input type="text" hidden={true} id="userComment" name="_userComment" ref={userComment} value={loggedUser._id}/>
+																		<input type="text" hidden={true} id="userComment" name="_userComment" value={loggedUser._id}/>
 																	) : (
-																		<input type="text" hidden={true} id="userComment" name="_userComment" ref={userComment} value={"63849607a19b1a6fb9746b83"}/>
+																		<input type="text" hidden={true} id="userComment" name="_userComment" value={"63849607a19b1a6fb9746b83"}/>
 																	)}
 																	<div className="pb-2">
 																		<div>
 																			<label className="text-gray-800"htmlFor="descriptionComment"> Comentario </label>
 																		</div>
-																		<Textarea id="descriptionComment" type="textarea" rows={2} name="_descriptionComment" placeholder="Comentario" className="text-sm" ref={descriptionComment}/>
+																		<Textarea id="descriptionComment" type="textarea" rows={2} name="_descriptionComment" placeholder="Comentario" className="text-sm"/>
 																	</div>
-																	<input type="text" hidden={true} id="reviewComment" name="_reviewComment" ref={reviewComment} value={review._id}/>
+																	<input type="text" hidden={true} id="reviewComment" name="_reviewComment" value={review._id}/>
 																	<div className="flex items-left pt-1">
 																		<Button type="submit" color="dark" outline={true}>
 																			Comentar
