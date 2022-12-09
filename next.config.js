@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   env: {
     URL: process.env.URL,
+    ABIERTOS_URL: process.env.ABIERTOS_URL,
 
     MONGODB_URL: process.env.MONGODB_URL,
     GOOGLEMAPS_KEY: process.env.GOOGLEMAPS_KEY,

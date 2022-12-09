@@ -14,7 +14,7 @@ const CreateUser = ({}) => {
 
 	const handleSubmit = async() => {
 		await fetch(
-			`http://${process.env.URL}/api/users`,{
+			`https://${process.env.URL}/api/users`,{
 				body: JSON.stringify({
 					name: name.current.value,
 					surname: surname.current.value,
@@ -40,7 +40,7 @@ const CreateUser = ({}) => {
 
 				<h1 className="text-2xl font-normal ">Crear usuario</h1>
 				<div >
-					<form onSubmit={handleSubmit} action={`http://${process.env.URL}/users`}>
+					<form onSubmit={handleSubmit} action={`https://${process.env.URL}/users`}>
 						<div className="pb-2 w-96">
 							<div>
 								<label className="text-gray-800"htmlFor="name"> Nombre </label>

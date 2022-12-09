@@ -20,7 +20,7 @@ const CreateBooking = ({loggedUser}) => {
 
 	const handleSubmit = async() => {
 		await fetch(
-			`http://${process.env.URL}/api/bookings`,{
+			`https://${process.env.URL}/api/bookings`,{
 				body: JSON.stringify({
 					startDate: startDate.current.value,
 					endDate: endDate.current.value,
@@ -44,7 +44,7 @@ const CreateBooking = ({loggedUser}) => {
 
 				<h1 className="text-2xl font-normal ">Crear reserva</h1>
 				<div >
-					<form onSubmit={handleSubmit} action={`http://${process.env.URL}/bookings`}>
+					<form onSubmit={handleSubmit} action={`https://${process.env.URL}/bookings`}>
 						<div className="pb-2 w-96">
 							<div>
 								<label className="text-gray-800"htmlFor="startDate"> Fecha de inicio </label>
@@ -137,7 +137,7 @@ export async function getServerSideProps(ctx){
 	const session = await getSession(ctx)
 
 	if(session) {
-		const loggedUser = await fetch(`http://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
+		const loggedUser = await fetch(`https://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
 
 		if(!loggedUser.length) {
 			return {

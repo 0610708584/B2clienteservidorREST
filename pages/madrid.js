@@ -142,10 +142,10 @@ export async function getServerSideProps(ctx) {
 	if((ctx.query).pollutant !== undefined) {
 		const {pollutant} = ctx.query 
 
-		const allWeather = await fetch(`http://localhost:3001/api/madrid/weather`).then(response => response.json())
+		const allWeather = await fetch(`https://${process.env.ABIERTOS_URL}/api/madrid/weather`).then(response => response.json())
 		const weather = [allWeather[0], allWeather[1], allWeather[2], allWeather[3], allWeather[4]]
 
-		const allPollution = await fetch(`http://localhost:3001/api/madrid/pollution/pollutant/${pollutant}`).then(response => response.json())
+		const allPollution = await fetch(`https://${process.env.ABIERTOS_URL}/api/madrid/pollution/pollutant/${pollutant}`).then(response => response.json())
 		const pollution = [allPollution[0], allPollution[1], allPollution[2], allPollution[3], allPollution[4]]
 
 		
@@ -160,9 +160,9 @@ export async function getServerSideProps(ctx) {
 	if((ctx.query).date !== undefined) {
 		const {date} = ctx.query 
 
-		const weather = await fetch(`http://localhost:3001/api/madrid/weather/date/${date}`).then(response => response.json())
+		const weather = await fetch(`https://${process.env.ABIERTOS_URL}/api/madrid/weather/date/${date}`).then(response => response.json())
 
-		const allPollution = await fetch(`http://localhost:3001/api/madrid/pollution`).then(response => response.json())
+		const allPollution = await fetch(`https://${process.env.ABIERTOS_URL}/api/madrid/pollution`).then(response => response.json())
 		const pollution = [allPollution[0], allPollution[1], allPollution[2], allPollution[3], allPollution[4]]
 		
 		return {
@@ -173,10 +173,10 @@ export async function getServerSideProps(ctx) {
 		}
 	}
 
-	const allWeather = await fetch(`http://localhost:3001/api/madrid/weather`).then(response => response.json())
+	const allWeather = await fetch(`https://${process.env.ABIERTOS_URL}/api/madrid/weather`).then(response => response.json())
 	const weather = [allWeather[0], allWeather[1], allWeather[2], allWeather[3], allWeather[4]]
 
-	const allPollution = await fetch(`http://localhost:3001/api/madrid/pollution`).then(response => response.json())
+	const allPollution = await fetch(`https://${process.env.ABIERTOS_URL}/api/madrid/pollution`).then(response => response.json())
 	const pollution = [allPollution[0], allPollution[1], allPollution[2], allPollution[3], allPollution[4]]
 
 		return {

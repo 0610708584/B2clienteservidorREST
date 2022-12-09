@@ -27,7 +27,7 @@ const House = ({
 
 	const deleteHousing = async() => {
 		await fetch(
-			`http://${process.env.URL}/api/housings/${house._id}`,{
+			`https://${process.env.URL}/api/housings/${house._id}`,{
 				method: 'DELETE'
 			})
 			.then(router.push('/housings'))
@@ -35,7 +35,7 @@ const House = ({
 
 	const deleteComment = async(comentario) => {
 		await fetch(
-			`http://${process.env.URL}/api/comments/${comentario}`,{
+			`https://${process.env.URL}/api/comments/${comentario}`,{
 				method: 'DELETE'
 			})
 			.then(router.push(`/housing?id=${house._id}`))
@@ -43,7 +43,7 @@ const House = ({
 
 	const deleteReview = async(review) => {
 		await fetch(
-			`http://${process.env.URL}/api/reviews/${review}`,{
+			`https://${process.env.URL}/api/reviews/${review}`,{
 				method: 'DELETE'
 			})
 			.then(router.push(`/housing?id=${house._id}`))
@@ -79,7 +79,7 @@ const House = ({
 
 	const submitReview = async() => {
 		await fetch(
-			`http://${process.env.URL}/api/reviews`,{
+			`https://${process.env.URL}/api/reviews`,{
 				body: JSON.stringify({
 					user: userReview.current.value,
 					score: scoreReview.current.value,
@@ -163,7 +163,7 @@ const House = ({
 
 									<TwitterShareButton
 										title={"¡Consulta este alojamiento!"}
-										url={`http://${process.env.URL}/housing?id=${house._id}`}
+										url={`https://${process.env.URL}/housing?id=${house._id}`}
 										hashtags={["alojamientos"]}>
 										<TwitterIcon size={40} round />
 									</TwitterShareButton>
@@ -179,7 +179,7 @@ const House = ({
 																	
 									const submitComment = async() => {
 										await fetch(
-											`http://${process.env.URL}/api/comments`,{
+											`https://${process.env.URL}/api/comments`,{
 												body: JSON.stringify({
 													user: document.getElementById("userComment").value,
 													description: document.getElementById("descriptionComment").value,
@@ -204,12 +204,12 @@ const House = ({
 															{session ? (
 																(loggedUser._id == (review.user)._id) ? (
 																	<Button onClick={()=> deleteReview(review._id)} className="bg-orange-500 hover:bg-orange-700 mt-2 ml-1" size="xs" pill={true}>
-																		<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+																		<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
 																	</Button>
 																) : null
 															) : (
 																<Button onClick={()=> deleteReview(review._id)} className="bg-orange-500 hover:bg-orange-700 mt-2 ml-1" size="xs" pill={true}>
-																	<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+																	<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
 																</Button>
 															)}
 														</div>
@@ -242,12 +242,12 @@ const House = ({
 																								{session ? (
 																									(loggedUser._id == (comment.user)._id) ? (
 																										<Button onClick={()=> deleteComment(comment._id)} className="bg-orange-500 hover:bg-orange-700 mt-2" pill={true} size="xs">
-																											<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+																											<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
 																										</Button>
 																									) : null
 																								) : (
 																									<Button onClick={()=> deleteComment(comment._id)} className="bg-orange-500 hover:bg-orange-700 mt-2" pill={true} size="xs">
-																										<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+																										<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
 																									</Button>
 																								)}
 																							</div>
@@ -261,7 +261,7 @@ const House = ({
 																}
 															</ul>
 															<div className="pt-2">
-																<form onSubmit={submitComment} action={`http://${process.env.URL}/housing`}>
+																<form onSubmit={submitComment} action={`https://${process.env.URL}/housing`}>
 																	<input type="text" hidden={true} id="id" name="id" value={house._id}/>
 																	{session ? (
 																		<input type="text" hidden={true} id="userComment" name="_userComment" value={loggedUser._id}/>
@@ -301,7 +301,7 @@ const House = ({
 						<hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 w-4/12"></hr>
 						<p className="text-2xl font-semibold text-gray-800 pt-4 pb-2" style={{"line-height": "0"}}>Publicar reseña</p>
 						<div className="pt-2 w-4/12">
-							<form onSubmit={submitReview} id="reviewForm" action={`http://${process.env.URL}/housing`}>
+							<form onSubmit={submitReview} id="reviewForm" action={`https://${process.env.URL}/housing`}>
 								<input type="text" hidden={true} id="id" name="id" value={house._id}/>
 								{session ? (
 									<input type="text" hidden={true} id="userReview" name="_userReview" ref={userReview} value={loggedUser._id}/>
@@ -330,7 +330,7 @@ const House = ({
 
 								<input hidden={true} name="user_email" value={owner.email}  />
 								<input hidden={true} name="user_name" value={owner.name}  />
-								<input hidden={true} name="user_housing" value={`http://${process.env.URL}/housing?id=${house._id}`}/>
+								<input hidden={true} name="user_housing" value={`https://${process.env.URL}/housing?id=${house._id}`}/>
 
 								<div className="flex items-left pt-1">
 									<Button type="submit" >
@@ -350,22 +350,22 @@ export async function getServerSideProps(ctx){
 
 	const {id} = ctx.query
 
-	const house = await fetch(`http://${process.env.URL}/api/housings/${id}`)
+	const house = await fetch(`https://${process.env.URL}/api/housings/${id}`)
 		.then(response => response.json())
 
-	const owner = await fetch(`http://${process.env.URL}/api/users/${house.owner}`)
+	const owner = await fetch(`https://${process.env.URL}/api/users/${house.owner}`)
 		.then(response => response.json())
 
-	const reviews = await fetch(`http://${process.env.URL}/api/reviews/housing/${id}`)
+	const reviews = await fetch(`https://${process.env.URL}/api/reviews/housing/${id}`)
 		.then(response => response.json())
 
 	for(const review of reviews) {
-		const user = await fetch(`http://${process.env.URL}/api/users/${review.user}`).then(response => response.json())
+		const user = await fetch(`https://${process.env.URL}/api/users/${review.user}`).then(response => response.json())
 		review.user = user
 
-		const comments = await fetch(`http://${process.env.URL}/api/comments/review/${review._id}`).then(response => response.json())
+		const comments = await fetch(`https://${process.env.URL}/api/comments/review/${review._id}`).then(response => response.json())
 		for(const comment of comments) {
-			const user = await fetch(`http://${process.env.URL}/api/users/${comment.user}`).then(response => response.json())
+			const user = await fetch(`https://${process.env.URL}/api/users/${comment.user}`).then(response => response.json())
 			comment.user = user
 		}
 		review.comments = comments
@@ -377,7 +377,7 @@ export async function getServerSideProps(ctx){
 	const session = await getSession(ctx)
 
 	if(session) {
-		const loggedUser = await fetch(`http://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
+		const loggedUser = await fetch(`https://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
 
 		if(!loggedUser.length) {
 			return {

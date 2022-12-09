@@ -167,10 +167,10 @@ const Users = ({users}) => {
 export async function getServerSideProps(ctx) {
 	const session = await getSession(ctx)
 	if(session) {
-		const loggedUser = await fetch(`http://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
+		const loggedUser = await fetch(`https://${process.env.URL}/api/users/email/${(session.user).email}`).then(response => response.json())
 
 		if(!loggedUser.length) {
-			await fetch(`http://${process.env.URL}/api/users`, {
+			await fetch(`https://${process.env.URL}/api/users`, {
 					body: JSON.stringify({
 						name: (session.user).name,
 						surname: "",
@@ -191,7 +191,7 @@ export async function getServerSideProps(ctx) {
 		const {age1} = ctx.query
 		const {age2} = ctx.query 
 
-		const users = await fetch(`http://${process.env.URL}/api/users/ages/${age1}/${age2}`)
+		const users = await fetch(`https://${process.env.URL}/api/users/ages/${age1}/${age2}`)
 		.then(response => response.json())
 
 		return {
@@ -204,7 +204,7 @@ export async function getServerSideProps(ctx) {
 	if((ctx.query).username !== undefined) {
 		const {username} = ctx.query 
 
-		const users = await fetch(`http://${process.env.URL}/api/users/username/${username}`)
+		const users = await fetch(`https://${process.env.URL}/api/users/username/${username}`)
 		.then(response => response.json())
 
 		return {
@@ -214,7 +214,7 @@ export async function getServerSideProps(ctx) {
 		}
 	}
 
-	const users = await fetch(`http://${process.env.URL}/api/users`)
+	const users = await fetch(`https://${process.env.URL}/api/users`)
 		.then(response => response.json())
 	
 		return {
