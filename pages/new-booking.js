@@ -13,7 +13,7 @@ const CreateBooking = ({loggedUser}) => {
 
 	const startDate = useRef()
 	const endDate = useRef()
-	const user = session ? useState(loggedUser._id) : useRef()
+	const user = useRef()
 	const housing = useRef()
 	const lat = useRef()
 	const lng = useRef()
@@ -62,7 +62,7 @@ const CreateBooking = ({loggedUser}) => {
 								<div>
 									<label className="text-gray-800"htmlFor="user"> Identificador de usuario </label>
 								</div>
-								<TextInput required={true} id="user" name="_user" placeholder="Identificador de usuario" value={user[0]} disabled={true}/>
+								<TextInput required={true} id="user" name="_user" placeholder="Identificador de usuario" value={loggedUser._id} disabled={true}/>
 							</div>,
 							<div className="pb-4" key={loggedUser}>
 								<div>

@@ -12,7 +12,7 @@ const CreateHousing = ({loggedUser}) => {
 	const description = useRef()
 	const address = useRef()
 	const price = useRef()
-	const owner = session ? useState(loggedUser._id) : useRef()
+	const owner = useRef()
 	const lat = useRef()
 	const lng = useRef()
 	const public_id = useRef()
@@ -76,7 +76,7 @@ const CreateHousing = ({loggedUser}) => {
 							<div>
 								<label className="text-gray-800"htmlFor="price"> Identificador de propietario </label>
 							</div>
-							<TextInput required={true} id="owner" name="_owner" placeholder="Identificador de propietario" value={owner[0]} disabled={true}/>
+							<TextInput required={true} id="owner" name="_owner" placeholder="Identificador de propietario" value={loggedUser._id} disabled={true}/>
 						</div>
 					) : (
 						<div className="pb-2">
