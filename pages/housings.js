@@ -112,64 +112,73 @@ const Housings = ({
 				<NavbarItem />
 			</div>
 
-			<div className="flex-col flex items-left px-4 pt-12">
-				<form onSubmit={handleSubmit}>
-					<Dropdown label="Filtro">
-						<Dropdown.Item onClick={filterNone}>
-							Ninguno
-						</Dropdown.Item>
-						<Dropdown.Item onClick={filterAddress}>
-							Dirección
-						</Dropdown.Item>
-						<Dropdown.Item onClick={filterPrices}>
-							Precio
-						</Dropdown.Item>
-						<Dropdown.Item onClick={filterOwner}>
-							Propietario
-						</Dropdown.Item>
-					</Dropdown>
+			<div className="flex flex-row items-center justify-between px-4">
+				<div>
+					<form onSubmit={handleSubmit} color="dark">
+						<Dropdown label="Filtro" inline={true}>
+							<Dropdown.Item onClick={filterNone}>
+								Ninguno
+							</Dropdown.Item>
+							<Dropdown.Item onClick={filterAddress}>
+								Dirección
+							</Dropdown.Item>
+							<Dropdown.Item onClick={filterPrices}>
+								Precio
+							</Dropdown.Item>
+							<Dropdown.Item onClick={filterOwner}>
+								Propietario
+							</Dropdown.Item>
+						</Dropdown>
 
-						<TextInput id="address" 
-							name="address" 
-							className="pt-4 w-96"
-							value={addressValue}
-							placeholder="Dirección"
-							onChange={ (event) => setAddress(event.target.value)}
-							style={{display: "none"}}
-						/>
+							<TextInput id="address" 
+								name="address" 
+								className="pt-4 w-96"
+								value={addressValue}
+								placeholder="Dirección"
+								onChange={ (event) => setAddress(event.target.value)}
+								style={{display: "none"}}
+							/>
 
-						<div id="prices" className="w-96" style={{display: "none"}}>
-							<TextInput id="price1" 
-								name="price1" 
-								value={price1Value}
-								placeholder="Precio mínimo"
-								onChange={ (event) => setPrice1(event.target.value)}/>
+							<div id="prices" className="w-96" style={{display: "none"}}>
+								<TextInput id="price1" 
+									name="price1" 
+									value={price1Value}
+									placeholder="Precio mínimo"
+									onChange={ (event) => setPrice1(event.target.value)}/>
 
-							<TextInput id="price2" 
-								name="price2" 
-								className="pt-4"
-								value={price2Value}
-								placeholder="Precio máximo"
-								onChange={ (event) => setPrice2(event.target.value)}/>
+								<TextInput id="price2" 
+									name="price2" 
+									className="pt-4"
+									value={price2Value}
+									placeholder="Precio máximo"
+									onChange={ (event) => setPrice2(event.target.value)}/>
+							</div>
+
+
+							<TextInput id="owner" 
+								name="owner" 
+								value={ownerValue}
+								className="w-96"
+								placeholder="Apodo del propietario"
+								onChange={ (event) => setOwner(event.target.value)}
+								style={{display: "none"}}
+							/>
+
+						<div className="">
+							<Button id="submit" type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800" style={{display: "none"}}>
+								Buscar
+							</Button>
 						</div>
+					</form>
+				</div>	
 
-
-						<TextInput id="owner" 
-							name="owner" 
-							value={ownerValue}
-							className="w-96"
-							placeholder="Apodo del propietario"
-							onChange={ (event) => setOwner(event.target.value)}
-							style={{display: "none"}}
-						/>
-
-
-					<div className="flex-col ">
-						<Button id="submit" type="submit" className="mt-4" style={{display: "none"}}>
-							Buscar
-						</Button>
-					</div>
-				</form>
+				<div className="my-2">
+					<Button href='new-housing' className="bg-blue-600 hover:bg-blue-800">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  							<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+						</svg>
+					</Button>
+				</div>
 			</div>
 			
 

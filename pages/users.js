@@ -100,7 +100,7 @@ const Users = ({users, loggedUser}) => {
 		<>
 			<NavbarItem />	
 			<div className="flex flex-col pt-10 items-center">
-				<Dropdown label="Filtro">
+				<Dropdown label="Filtro" inline={true}>
 					<Dropdown.Item onClick={filterNone}>
 						Ninguno
 					</Dropdown.Item>
@@ -137,7 +137,7 @@ const Users = ({users, loggedUser}) => {
 					</div>
 
 					<div className="flex-col flex items-center">
-						<Button id="submit" type="submit" className="my-4" style={{display: "none"}}>
+						<Button id="submit" type="submit" className="my-4 bg-blue-600 hover:bg-blue-800" style={{display: "none"}}>
 							Buscar
 						</Button>
 					</div>
@@ -168,11 +168,10 @@ const Users = ({users, loggedUser}) => {
 										<div className="flex items-center space-x-4">
 											<AdvancedImage cldImg={myImage} />
 											<div className="min-w-0 flex-1">
-												<p className="truncate font-medium text-gray-900 dark:text-white underline">{user.name + " " + user.surname + " (" + user.age + " años)"} </p>
-												<p className="truncate font-medium text-gray-900 dark:text-white">{user.username} </p>
-												<p className="truncate text-gray-500 dark:text-gray-400">{user._id}</p>
+												<p className="text-lg font-semibold text-gray-900">{user.username} </p>
+												<p className="text-base font-light text-gray-700 ">{user.name + " " + user.surname + " (" + user.age + " años)"} </p>
 											</div>
-											<Link href={`user/?id=${user._id}`} passHref><Button>Ver perfil</Button></Link>
+											<Link href={`user/?id=${user._id}`} passHref><Button className="bg-blue-600 hover:bg-blue-800">Ver perfil</Button></Link>
 										</div>
 									</li>
 								)

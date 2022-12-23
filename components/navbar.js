@@ -1,59 +1,51 @@
 import { useSession, signIn, signOut } from "next-auth/react"
-import { Navbar, Button } from "flowbite-react"
+import { Navbar, Button, Dropdown } from "flowbite-react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 const NavbarItem = () => {
 	const { data: session } = useSession()
+	const router = useRouter()
+	const path = router.pathname
+	const pathIndex = router.pathname == '/'
+	
 
 	return (
 		<Navbar fluid={true} rounded={true}>
-			<Navbar.Brand href={`http://${process.env.URL}`}>
-				<img src="http://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="IWEB"/>
-				<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">IWEB</span>
+			<Navbar.Brand href={`http://${process.env.URL}/housings`}>
+				<img src="logo-blue-3.png" className="mr-3 h-6 sm:h-9" alt="iHOME"/>
+				<span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">iHOME</span>
 			</Navbar.Brand>
-	
-			<Navbar.Collapse>
-				<Link href='/users'>Usuarios</Link> 
-				<Link href='/housings'>Alojamientos</Link> 
-				<Link href='/bookings'>Reservas</Link> 
-				<Link href='/madrid'><a className="underline">Madrid</a></Link>
-			</Navbar.Collapse>
-			{(session) ? (
-				<div className="flex-row flex">
-					<div className="px-2">
-						<Link href='new-housing'><Button>Crear alojamiento</Button></Link>
-						<Navbar.Toggle/>
-					</div>
-					<div className="px-2">
-						<Link href='new-booking'><Button>Crear reserva</Button></Link>
-						<Navbar.Toggle/>
-					</div>
+			
+			{(pathIndex) ? (
+				<div></div>
+			) : (<div>
+				<Navbar.Collapse>
+					<Navbar.Link href="/housings" active={path == '/housings'}>Alojamientos</Navbar.Link>
+					<Navbar.Link href="/users" active={path == '/users'}>Usuarios</Navbar.Link>
+					<Navbar.Link href="/bookings" active={path == '/bookings'}>Reservas</Navbar.Link>
+					<Navbar.Link href="/madrid" active={path == '/madrid'} className="underline">Madrid</Navbar.Link>
+				</Navbar.Collapse>
+			</div>)}
+
+				{(session) ? (
 					<div className="pl-2">
-						<Button onClick={()=> signOut()} color="dark">Cerrar sesión</Button>
+						<Button onClick={()=> signOut()} className="bg-slate-600 hover:bg-slate-900">Cerrar sesión</Button>
 						<Navbar.Toggle/>
 					</div>
-				</div>
 				) : (
 					<div className="flex-row flex">
-						<div className="px-2">
-							<Link href='new-user'><Button>Crear usuario</Button></Link>
-							<Navbar.Toggle/>
-						</div>
-						<div className="px-2">
-							<Link href='new-housing'><Button>Crear alojamiento</Button></Link>
-							<Navbar.Toggle/>
-						</div>
-						<div className="px-2">
-							<Link href='new-booking'><Button>Crear reserva</Button></Link>
-							<Navbar.Toggle/>
-						</div>
 						<div className="pl-2">
-							<Button onClick={()=> signIn()} color="dark">Iniciar sesión</Button>
+							<Button onClick={()=> signIn()} className="bg-blue-600 hover:bg-blue-800">Iniciar sesión</Button>
+							<Navbar.Toggle/>
+						</div>
+						<div className="px-2">
+							<Link href='new-user'><Button className="bg-slate-600 hover:bg-slate-900">Registrarse</Button></Link>
 							<Navbar.Toggle/>
 						</div>
 					</div>
-				)
-			}
+				)}
+			
 		</Navbar>
 	)
 	

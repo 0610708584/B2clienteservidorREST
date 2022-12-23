@@ -1,4 +1,5 @@
-import { Carousel } from "flowbite-react"
+import { Button, Carousel } from "flowbite-react"
+import Link from "next/link"
 import NavbarItem from "../components/navbar"
 
 const Home = (props) => {
@@ -7,11 +8,14 @@ const Home = (props) => {
 			<div>
 				<NavbarItem />
 			</div>
-			<div className="relative flex flex-row w-full h-full ">
-				<div className="flex flex-col w-full justify-center items-center">
-					<div className="flex flex-col pl-24">
-						<p className="text-5xl font-semibold text-gray-900 py-6">Bienvenido a este alquiler de alojamientos</p>
+			<div className="relative flex flex-row w-full h-full">
+				<div className="flex flex-col w-full place-content-center">
+					<div className="flex flex-col pl-24 space-y-2">
+						<p className="text-5xl font-semibold text-gray-900 ">Bienvenido a este alquiler de alojamientos</p>
 						<p className="text-3xl font-light text-gray-900">Alojamientos para todos los gustos</p>
+						<div className="pt-2">
+							<Link href='/housings'><Button className="bg-blue-600 hover:bg-blue-800">Comenzar</Button></Link>
+						</div>
 					</div>
 				</div>
 

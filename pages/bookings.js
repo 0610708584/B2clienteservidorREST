@@ -118,7 +118,7 @@ const Bookings = ({bookings}) => {
 			<div className="flex flex-col pt-10 items-center">
 
 			{(session) ? null : ([
-				<Dropdown label="Filtro">
+				<Dropdown label="Filtro" inline={true}>
 					<Dropdown.Item onClick={filterNone}>
 						Ninguno
 					</Dropdown.Item>
@@ -173,7 +173,7 @@ const Bookings = ({bookings}) => {
 					</div>
 
 					<div className="flex-col flex items-center">
-						<Button id="submit" type="submit" className="my-4" style={{display: "none"}}>
+						<Button id="submit" type="submit" className="my-4 bg-blue-600 hover:bg-blue-800" style={{display: "none"}}>
 							Buscar
 						</Button>
 					</div>
@@ -200,9 +200,9 @@ const Bookings = ({bookings}) => {
 														<p className="truncate text-gray-500 dark:text-gray-400"><span className="font-medium">Usuario: </span>{(booking.user).name + " " + (booking.user).surname}</p>
 														<p className="truncate text-gray-500 dark:text-gray-400"><span className="font-medium">Alojamiento: </span>{(booking.housing).address}</p>
 													</div>
-		
-													<Link href={`booking/?id=${booking._id}`} passHref><Button>Ver reserva</Button></Link>
-													
+													<Button className="bg-blue-600 hover:bg-blue-800">
+														<Link href={`booking/?id=${booking._id}`} passHref>Ver reserva</Link>
+													</Button>
 												</div>
 											</li>
 										)
@@ -210,15 +210,28 @@ const Bookings = ({bookings}) => {
 								} else {
 									return (
 										<li className="py-3 sm:py-4">
-											<div className="flex items-center space-x-4">
+											<div className="flex items-center space-x-6">
 												
 												<div className="min-w-0 flex-1">
-													<p className="truncate font-medium text-gray-900 dark:text-white">{(booking.startDate).split('T')[0] + " → " + (booking.endDate).split('T')[0]} </p>
-													<p className="truncate text-gray-500 dark:text-gray-400"><span className="font-medium">Usuario: </span>{(booking.user).name + " " + (booking.user).surname}</p>
-													<p className="truncate text-gray-500 dark:text-gray-400"><span className="font-medium">Alojamiento: </span>{(booking.housing).address}</p>
+													<div className="flex flex-row space-x-1">
+														<p className="truncate font-medium text-gray-900 dark:text-white">{(booking.startDate).split('T')[0]} </p>
+														
+														<div>
+															<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+																<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+															</svg>
+														</div>
+														
+														<p className="truncate font-medium text-gray-900 dark:text-white">{(booking.endDate).split('T')[0]} </p>
+													</div>
+													
+													<p className="truncate text-gray-700 dark:text-gray-400"><span className="font-medium">Usuario: </span>{(booking.user).name + " " + (booking.user).surname}</p>
+													<p className="truncate text-gray-700 dark:text-gray-400"><span className="font-medium">Alojamiento: </span>{(booking.housing).address}</p>
 												</div>
 	
-												<Link href={`booking/?id=${booking._id}`} passHref><Button>Ver reserva</Button></Link>
+												<Button className="bg-blue-600 hover:bg-blue-800">
+														<Link href={`booking/?id=${booking._id}`} passHref>Ver reserva</Link>
+												</Button>
 												
 											</div>
 										</li>

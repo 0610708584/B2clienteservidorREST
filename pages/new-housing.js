@@ -45,8 +45,27 @@ const CreateHousing = ({loggedUser}) => {
 
 				<h1 className="text-2xl font-normal ">Crear alojamiento</h1>
 				<form onSubmit={handleSubmit} action={`http://${process.env.URL}/housings`}>
-				{/** Esto es temporal, hasta que tengamos la sesion del usuario 
-					<input type="text" hidden={true} id="owner" name="owner" ref={owner} value={"636d57a75c1044b28b7fe9c8"}/>   */}
+
+				{/** Coger id del usuario creador */}
+				{session ? (
+						<input type="text" hidden={true} 
+							required={true} 
+							id="owner" 
+							name="_owner" 
+							placeholder="Identificador de propietario" 
+							value={loggedUser._id} 
+							disabled={true}/>
+					) : (					
+							<input type="text" hidden={true} 
+								required={true} 
+								id="owner" 
+								name="_owner" 
+								placeholder="Identificador de propietario"
+								value={"63849607a19b1a6fb9746b83"} 
+								ref={owner}/>
+					)}
+
+				
 					<div className="pb-2 w-96">
 						<div>
 							<label className="text-gray-800"htmlFor="title"> Título </label>
@@ -71,21 +90,7 @@ const CreateHousing = ({loggedUser}) => {
 						</div>
 						<TextInput required={true} id="price" name="_price" placeholder="Precio por noche" ref={price}/>
 					</div>
-					{session ? (
-						<div className="pb-2">
-							<div>
-								<label className="text-gray-800"htmlFor="price"> Identificador de propietario </label>
-							</div>
-							<TextInput required={true} id="owner" name="_owner" placeholder="Identificador de propietario" value={loggedUser._id} disabled={true}/>
-						</div>
-					) : (
-						<div className="pb-2">
-							<div>
-								<label className="text-gray-800"htmlFor="price"> Identificador de propietario </label>
-							</div>
-							<TextInput required={true} id="owner" name="_owner" placeholder="Identificador de propietario" ref={owner}/>
-						</div>
-					)}
+					
 					<div className="pb-2">
 						<div>
 							<label className="text-gray-800"htmlFor="lat"> Latitud</label>

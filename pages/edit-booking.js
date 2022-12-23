@@ -14,8 +14,8 @@ const EditBooking = ({
 	const [endDateValue, setEndDate] = useState(booking.endDate)
 	const [userValue, setUser] = useState(booking.user)
 	const [housingValue, setHousing] = useState(booking.housing)
-	const [latValue, setLat] = useState(booking.lat)
-	const [lngValue, setLng] = useState(booking.lng)
+	const [guestsValue, setGuests] = useState(booking.guests)
+
 
 	
 	const handleSubmit = async event => {
@@ -28,8 +28,7 @@ const EditBooking = ({
 					endDate: event.target.endDate.value,
 					user: event.target.user.value,
 					housing: event.target.housing.value,
-					lat: event.target.lat.value,
-					lng: event.target.lng.value,
+					guests: event.target.guests.value
 				}),
 				headers: {
 					'Content-Type': 'application/json'
@@ -92,22 +91,12 @@ const EditBooking = ({
 					</div>
 					<div className="pb-2">
 						<div>
-							<label className="text-gray-800"htmlFor="lat"> Latitud de recogida</label>
+							<label className="text-gray-800"htmlFor="guests">Número de huéspedes</label>
 						</div>
-						<TextInput id="lat" 
-							name="lat" 
-							value={latValue}
-							onChange={ (event) => setLat(event.target.value)}
-						/>
-					</div>
-					<div className="pb-4">
-						<div>
-							<label className="text-gray-800"htmlFor="housing"> Longitud de recogida</label>
-						</div>
-						<TextInput id="lng" 
-							name="lng" 
-							value={lngValue}
-							onChange={ (event) => setLng(event.target.value)}
+						<TextInput id="laguestst" 
+							name="guests" 
+							value={guestsValue}
+							onChange={ (event) => setGuests(event.target.value)}
 						/>
 					</div>
 					<div className="flex-col flex items-center">

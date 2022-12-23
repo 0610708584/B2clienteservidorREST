@@ -1,7 +1,7 @@
 import {Schema, model, models} from 'mongoose'
 
 const bookingSchema = new Schema({
-  startDate: {
+  	startDate: {
 		type: Date,
 		required: [true, 'Start date is required']
 	},
@@ -17,13 +17,9 @@ const bookingSchema = new Schema({
 		type: Schema.Types.ObjectId, ref: 'Housing',
 		required : [true, 'Housing is required']
 	},
-	lat: {
+	guests: {
 		type: Number,
-		required : [true, 'Latitude is required']
-	},
-	lng: {
-		type: Number,
-		required : [true, 'Longitude is required']
+		required : [true, 'Guests is required']
 	}
 }, {
 	timestamps: false,	

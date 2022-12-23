@@ -37,7 +37,7 @@ const HousingItem = ({
 				<p className="w-full truncate text-xl font-bold text-gray-900">{housing.title}</p>
 				<p className="w-full truncate text-lg font-normal text-gray-700">{housing.address}</p>
 					<div className="w-full flex flex-row">
-						<p className="text-sm font-bold text-gray-600">{housing.price } </p>
+						<p className="text-sm font-bold text-gray-900">{housing.price } </p>
 						<p className="text-sm ">€ por noche </p>
 					</div>
 				</div>

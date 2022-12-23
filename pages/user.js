@@ -18,15 +18,15 @@ const UserProfile = ({user}) => {
 	const [propertiesList, setProperties] = useState([])
 
 	useEffect(() => {
-		const getHousings = async() => {
+		const getData = async() => {
 
-			const housingList = await fetch(`http://${process.env.URL}/api/housings/owner/${user.username}`)
+			const housings = await fetch(`http://${process.env.URL}/api/housings/owner/${user.username}`)
 				.then(response => response.json())
-
-			setProperties(housingList)
+			setProperties(housings)
+				
 		}
 
-		getHousings()
+		getData()
 	}, [])
 
 	const deleteUser = async() => {
@@ -44,7 +44,7 @@ const UserProfile = ({user}) => {
 			}
 		});
 		const myImage = cld.image(house.public_id)
-		myImage.resize(thumbnail().width(400).height(250)).roundCorners(byRadius(10));
+		myImage.resize(thumbnail().width(500).height(300)).roundCorners(byRadius(10));
 		return(
 			<Link href={`/housing?id=${house._id}`} passHref>
 				<div className='flex-none cursor-pointer'>
@@ -77,11 +77,10 @@ const UserProfile = ({user}) => {
 			<div className="flex flex-col w-full h-full items-center justify-center space-y-4 py-10">
 				<div className="flex flex-col w-full items-center space-y-2">
 					<AdvancedImage cldImg={myImage} />
-					<div className="flex flex-col items-center">
+					<div className="flex flex-col items-center pb-4">
 							<p className="text-3xl font-medium text-gray-700">{user.name} {user.surname}</p>
 							<p className="text-base">{user.username}</p>
-							<p className="text-base pb-4">{user.email}</p>
-							<p className="text-base text-gray-400">{user._id}</p>
+							<p className="text-base">{user.email}</p>
 							<div className="flex flex-row justifiy-center space-x-2">
 								<p className="text-base text-gray-400">{user.age} años</p>
 								<p className="text-base text-gray-400">·</p>
@@ -91,15 +90,15 @@ const UserProfile = ({user}) => {
 					<div className="flex flex-row justify-between space-x-2">
 						{(session) ? (
 							(((session.user).email) === (user.email)) ? (
-								<Button>
+								<Button className="bg-blue-600 hover:bg-blue-800">
 									<Link href={`edit-user/?id=${user._id}`} passHref>Editar perfil</Link>
 								</Button>
 							) : (null)
 						) : ([
-							<Button>
+							<Button className="bg-blue-600 hover:bg-blue-800">
 								<Link href={`edit-user/?id=${user._id}`} passHref>Editar perfil</Link>
 							</Button>,
-							<Button onClick={deleteUser} className="bg-orange-500 hover:bg-orange-700">Borrar perfil</Button>
+							<Button onClick={deleteUser} className="bg-amber-600 hover:bg-amber-800">Borrar perfil</Button>
 						])}
 					</div>
 				</div>
